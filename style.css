@@ -1,0 +1,903 @@
+/* Reset y box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body y tipografías */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* HEADER ESTILOS */
+/* Asegúrate de que el header no recorte los dropdowns */
+.site-header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 1200px;
+  background: #fff;
+  padding: 16px 32px;
+  border-radius: 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  z-index: 1000;
+  overflow: visible;    /* Muy importante para que no lo “corte” */
+}
+
+/* Dropdown base */
+.has-dropdown {
+  position: relative;
+}
+.has-dropdown .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;                      /* Fondo blanco */
+  border-radius: 16px;                   /* Bordes redondeados */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1); /* Sutil sombra */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all .2s ease;
+  z-index: 1001;                         /* Por encima del header */
+}
+
+/* Mostrar al hacer hover */
+.has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Contenido del dropdown */
+.dropdown-content {
+  display: flex;
+  gap: 32px;
+  padding: 24px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+
+/* NAV IZQUIERDA */
+.nav-left ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.nav-left a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.nav-left span {
+  font-weight: bold;
+  margin-left: 4px;
+}
+.nav-left a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.nav-left a:hover::after {
+  width: 100%;
+}
+.nav-left a:hover {
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* SHOP DROPDOWN */
+.shop-dropdown {
+  position: relative;
+}
+.shop-dropdown .dropdown {
+  position: absolute;
+  top: calc(100% + 30px);
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+.shop-dropdown:hover .dropdown,
+.shop-dropdown .dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+}
+.shop-dropdown .dropdown::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
+
+/* COLLECTIONS DROPDOWN */
+.collections-dropdown {
+  position: relative;
+}
+.collections-dropdown .dropdown {
+  position: absolute;
+  top: calc(100% + 30px);
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+.collections-dropdown:hover .dropdown,
+.collections-dropdown .dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+}
+.collections-dropdown .dropdown::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
+
+/* Dropdown content */
+.collections-dropdown .dropdown-content {
+  display: flex;
+  gap: 16px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Categorías */
+.menu-categories {
+  min-width: 160px;
+}
+.menu-categories h4 {
+  font-style: italic;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+.menu-categories ul {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-categories a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.menu-categories a:hover {
+  color: #000;
+}
+
+/* Promociones */
+.menu-promos {
+  display: flex;
+  gap: 24px;
+  margin-left: 32px;
+}
+.promo-card {
+  position: relative;
+  background: #f7f6f1;
+  border-radius: 16px;
+  padding: 16px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.promo-card img {
+  max-width: 100%;
+  height: auto;
+  margin: 12px 0;
+}
+.promo-card h5 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+  color: #333;
+}
+.promo-card .price {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+.promo-card .old {
+  margin-left: 6px;
+  font-size: 12px;
+  text-decoration: line-through;
+  color: #999;
+}
+.promo-card .icon-heart {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: #333;
+  font-size: 14px;
+}
+.promo-card .badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #44513e;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.promo-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Tarjetas de colección: carrusel horizontal */
+.menu-collections {
+  display: flex;
+  overflow-x: auto;      /* ← permite el desplazamiento */
+  padding-bottom: 10px;   /* ← espacio para la scrollbar */
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* Personalización de la scrollbar */
+.menu-collections::-webkit-scrollbar {
+  height: 6px;
+}
+.menu-collections::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.menu-collections::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Asegurar que las tarjetas no se encojan */
+.collection-card {
+  flex: none;            /* ← evita el shrink */
+  min-width: 200px;      /* ← ancho fijo mínimo */
+  /* width: 200px; */     /* opcional: puedes mantener o quitar */
+  /* resto de tus estilos… */
+}
+
+.collection-card .collection-image {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+}
+.collection-card .collection-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.collection-card .collection-info {
+  background: #f7f6f1;
+  padding: 12px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.collection-card .collection-info em {
+  font-style: italic;
+  font-size: 14px;
+  color: #333;
+}
+.collection-card .collection-info i {
+  font-size: 16px;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+.collection-card:hover {
+  transform: translateY(-4px);
+}
+.collection-card:hover .collection-info i {
+  transform: translateX(4px);
+}
+
+/* NAV DERECHA */
+.nav-right ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-right a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.nav-right a:hover {
+  transform: scale(1.1);
+}
+
+/* Bandera */
+.flag {
+  width: 20px;
+  height: auto;
+}
+
+/* Íconos de redes sociales (Font Awesome "fab") */
+.nav-right .fab {
+  font-size: 18px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-right .fab:hover {
+  color: #d17c57; /* Cambia al color que combine con tu diseño */
+}
+
+
+/* Slider Hero */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  overflow: visible;
+}
+.slides {
+  position: absolute;
+  inset: 0;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.slide.active {
+  opacity: 1;
+}
+
+/* Hero content */
+.hero-content {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  color: #fff;
+  max-width: 400px;
+  z-index: 5;
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero-content h1 span {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 72px;
+  opacity: 0.85;
+}
+.hero-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 24px;
+  color: rgba(255,255,255,0.9);
+}
+.hero-content .btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  letter-spacing: 0.03em;
+  color: #fff;
+  padding-bottom: 2px;
+}
+
+/* Flechas (prev/next) */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 5;
+}
+.nav.prev { left: 20px; }
+.nav.next { right: 20px; }
+
+/* Dots indicadores */
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 5;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: background 0.3s, opacity 0.3s;
+}
+.dot.active {
+  background: #fff;
+  opacity: 1;
+}
+
+/* Posicionar por encima de todo y fuera de cualquier overflow */
+#dot-popup {
+  position: fixed;
+  display: none;
+  background: #f7f6f1;
+  border-radius: 16px;
+  padding: 16px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  z-index: 2000;
+  pointer-events: none; /* que no interfiera con el hover */
+}
+
+/* Mejora visibilidad de los dots */
+.interactive-dots .i-dot {
+  width: 16px;
+  height: 16px;
+  background: rgba(255,255,255,0.85);
+  border: 2px solid rgba(0,0,0,0.3);
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.i-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: all;
+  animation: radar 2s infinite ease-out;
+}
+@keyframes radar {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.8); }
+  70% { box-shadow: 0 0 0 20px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+/* === Popup como tarjeta de collections === */
+/* Hacemos transparente el popup viejo */
+/* Hacer transparente el wrapper del popup y eliminar su padding/borde */
+.dot-popup {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Ocultar cualquier hijo que no sea la .card (por si quedan restos) */
+.dot-popup > *:not(.card) {
+  display: none !important;
+}
+
+
+.dot-popup .card {
+  position: relative;
+  width: 300px;        /* ancho total de la zona blanca */
+  height: 200px;       /* alto total de la zona blanca */
+  padding: 8px;        /* espacio blanco alrededor de la imagen */
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* La imagen ocupa todo el interior, respetando el padding */
+.dot-popup .card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;  /* un poco menos que la tarjeta para que se note el borde */
+}
+
+/* Ajustamos también la posición del texto dentro */
+.dot-popup .card-info {
+  position: absolute;
+  bottom: 8px;          /* coincide con el padding inferior */
+  left: 8px;            /* coincide con el padding lateral */
+  width: calc(100% - 16px);
+  padding: 0 8px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 8px;
+}
+
+
+
+.dot-popup .card-info h5 {
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+}
+
+.dot-popup .card-info i {
+  color: #fff;
+  font-size: 12px;
+}
+
+.hero-slider .dot-popup {
+  position: fixed;
+}
+.hero-slider .slide .dot-popup {
+  position: absolute;
+  display: none;
+  background: #f7f6f1;
+  border-radius: 16px;
+  padding: 16px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  z-index: 1002; /* más alto que .site-header (1000) y que los slides */
+}
+
+.hero-slider .slides .slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+    z-index: 0;
+
+}
+.hero-slider .slides .slide.active {
+  z-index: 1;
+}
+
+.hero-slider .slides .slide1 {
+  background-image: url("img/hero1.webp");
+  background-size: cover;
+  background-position: center calc(50% + 70px);
+  direction: ltr;
+}
+
+.hero-slider .slides .slide1 .hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 16px;
+  text-align: left;
+  max-width: 600px;
+    text-align: justify;
+
+}
+
+.hero-slider .slides .slide1 .hero-content .line1 {
+  display: inline-block;
+  font-weight: 700;
+  text-align: justify;
+  white-space: nowrap; /* 👈 Esto es lo más importante */
+}
+
+.hero-slider .slides .slide1 .hero-content .line2 {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    text-align: justify;
+
+}
+
+.hero-slider .slides .slide2 {
+  background-image: url("img/hero2.webp");
+  background-size: cover;       /* <— lo que faltaba */
+  background-position: center;  /* <— idem */
+  position: relative;
+}
+.hero-slider .slides .slide2 .hero-content {
+  left: auto;
+  right: 10%;
+  text-align: right;
+}
+
+.hero-slider .slides .slide3 {
+  background-image: url("img/hero3.webp");
+  background-size: cover;
+  background-position: center;
+}
+.hero-slider .slides .slide3 .hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 16px;
+  text-align: left;
+  max-width: 600px;
+    text-align: justify;
+
+}
+
+.hero-slider .slides .slide3 .hero-content .line3 {
+  display: inline-block;
+  font-weight: 700;
+  text-align: justify;
+  white-space: nowrap; /* 👈 Esto es lo más importante */
+}
+
+.hero-slider .slides .slide3 .hero-content .line4 {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    text-align: justify;
+
+}
+
+
+
+/* === Header Responsive y Menú Móvil === */
+
+/* Mostrar solo una versión del header según tamaño */
+.desktop-header {
+  display: flex;
+}
+.mobile-header {
+  display: none;
+}
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2001;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.dot-microblading         { top: 25%; left: 80%; }
+.dot-pestanas             { top: 53%; left: 63%; }
+.dot-manicura             { top: 26%; left: 58%; }
+.dot-gel-semipermanente   { top: 55%; left: 34%; }
+.dot-depilacion           { top: 35%; left: 45%; }
+.dot-disenio-cejas-henna  { top: 45%; left: 56%; }
+@media (max-width: 768px) {
+  /* — Ocultar header de escritorio, mostrar header móvil — */
+  .desktop-header {
+    display: none !important;
+  }
+  .mobile-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 12px;
+  }
+
+  /* — Botón hamburguesa — */
+  .hamburger {
+    display: block !important;
+    position: static !important;
+    margin-right: auto;
+    font-size: 24px;
+    color: #333;
+    opacity: 1 !important;
+  }
+
+  /* — Logo — */
+  .logo {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+  .logo-img {
+    height: 36px;
+  }
+
+  /* — Íconos sociales a la derecha — */
+  .nav-icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .nav-icons .flag {
+    width: 20px;
+  }
+  .nav-icons .fab {
+    font-size: 18px;
+    color: #333;
+  }
+
+  /* — Menú móvil (oculto por defecto, se muestra con JS) — */
+  .mobile-menu {
+    display: none;
+  }
+.mobile-menu.open {
+  display: block;
+}
+@media (min-width: 769px) {
+  .mobile-menu,
+  .mobile-menu.open {
+    display: none !important;
+  }
+}
+  /* — Ajustes de las tarjetas de dot-popup para que no desborden — */
+  .dot-popup {
+    max-width: 80vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+  .dot-popup .card {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .dot-popup .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+/* === Reducir tamaños de fuente en versión móvil === */
+@media (max-width: 768px) {
+  /* Ajuste global de escala */
+  html {
+    font-size: 12px; /* base más pequeña para rems */
+  }
+
+  /* Texto general */
+  body {
+    font-size: 0.75rem; /* ≈9px */
+  }
+
+  /* Navegación */
+  .nav-left a,
+  .nav-icons a,
+  .nav-right a {
+    font-size: 0.75rem; /* ≈9px */
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 1.5rem;    /* ≈18px */
+    line-height: 1.2;
+  }
+  .hero-content p {
+    font-size: 0.75rem;   /* ≈9px */
+  }
+  .hero-content .btn {
+    font-size: 0.75rem;   /* ≈9px */
+  }
+
+  /* Dropdowns y menú móvil */
+  .mobile-menu a,
+  .dropdown-content a {
+    font-size: 0.75rem;   /* ≈9px */
+  }
+
+  /* Tarjetas de promoción */
+  .promo-card h5 {
+    font-size: 0.875rem;  /* ≈10.5px */
+  }
+  .promo-card .price {
+    font-size: 0.75rem;   /* ≈9px */
+  }
+
+  /* Colecciones */
+  .collection-card .collection-info em {
+    font-size: 0.75rem;   /* ≈9px */
+  }
+
+  /* Indicadores del slider */
+  .dots .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-slider .slide2 .hero-content h1 {
+    font-size: 32px;
+  }
+  .hero-slider .slide2 .hero-content h1 span {
+    font-size: 32px;
+  }
+}
+/* — Header responsive — */
+.desktop-header { display: flex; }
+.mobile-header  { display: none; }
+.mobile-menu    { display: none; }
+
+/* Mostrar menú móvil cuando tenga la clase .open */
+.mobile-menu.open { display: block; }
+
+@media (max-width: 768px) {
+  .desktop-header { display: none !important; }
+  .mobile-header  { display: flex   !important; }
+}
+@media (min-width: 769px) {
+  /* Asegura que al pasar a desktop todo quede cerrado */
+  .mobile-menu,
+  .mobile-menu.open {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .dot-microblading        { top: 30%; left: 90%; }
+  .dot-pestanas            { top: 55%; left: 70%; }
+  .dot-manicura            { top: 30%; left: 60%; }
+  .dot-gel-semipermanente  { top: 66%; left: 25%; }
+  .dot-depilacion          { top: 40%; left: 35%; }
+  .dot-disenio-cejas-henna { top: 48%; left: 60%; }
+}

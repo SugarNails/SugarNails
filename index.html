@@ -3,613 +3,381 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sugar Nails - Agendar Cita</title>
-  <style>
-    :root {
-  --rosa-pastel: #fce3f0;
-  --rosa-medio: #f9c7db;
-  --rosa-profundo: #e88eb4;
-  --lavanda-suave: #e8d8f6;
-  --blanco: #ffffff;
-}
+  <title>Sugar Nails</title>
 
-html, body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--rosa-pastel);
-  overflow-x: hidden;
-}
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-header {
-  background-color: var(--rosa-pastel);
-  padding: 8px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-.logo img {
-  height: 50px;
-  border-radius: 50%;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-}
-
-nav a {
-  color: #4f4440;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-.menu-hamburguesa {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.menu-hamburguesa div {
-  width: 30px;
-  height: 4px;
-  background-color: #4f4440;
-  border-radius: 2px;
-}
-
-.hero {
-  padding: 120px 60px 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.hero-text {
-  width: 100%;
-  max-width: 400px;
-}
-
-.hero h1 {
-  font-size: 48px;
-  color: #4f4440;
-}
-
-.hero p {
-  font-size: 20px;
-  color: #6e6e6e;
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  justify-items: center;
-}
-
-.image-grid img {
-  width: 200px;       /* ancho fijo */
-  height: 200px;      /* alto igual para cuadrado */
-  object-fit: cover;  /* recorta y centra */
-  border-radius: 20px;
-}
-
-.servicios {
-  background-color: white;
-  padding: 60px 30px;
-  text-align: center;
-}
-
-.servicios h2 {
-  font-size: 36px;
-  color: #4f4440;
-  margin-bottom: 40px;
-}
-
-.servicios-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.servicios-grid .card {
-  width: 250px;
-  height: 320px;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.servicios-grid .card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.ultimos-trabajos {
-  background-color: var(--lavanda-suave);
-  padding: 60px 30px;
-  text-align: center;
-}
-
-.ultimos-trabajos h2 {
-  font-size: 36px;
-  color: #4f4440;
-  margin-bottom: 30px;
-}
-
-.carousel-wrapper {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 20px;
-  animation: scrollCarousel 40s linear infinite;
-  width: max-content;
-}
-
-.carousel-track img {
-  width: 160px;
-  height: 240px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-@keyframes scrollCarousel {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.calendar-section {
-  background-color: var(--rosa-pastel);
-  color: #4f4440;
-  padding: 60px 30px;
-  display: flex;
-  gap: 50px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.calendar-box {
-  background-color: var(--rosa-medio);
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-}
-
-.calendar-box h3 {
-  text-align: center;
-  margin-top: 0;
-}
-
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  gap: 5px;
-}
-
-.calendar div {
-  padding: 8px;
-  background-color: var(--rosa-profundo);
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--blanco);
-}
-
-.calendar .header {
-  background-color: transparent;
-  font-weight: bold;
-  color: #4f4440;
-  cursor: default;
-}
-
-.calendar .selected {
-  background-color: var(--blanco);
-  color: #e88eb4;
-}
-
-.event-info {
-  background-color: var(--rosa-medio);
-  color: #4f4440;
-  border-radius: 10px;
-  padding: 20px;
-  min-width: 300px;
-}
-
-.event-info h4 {
-  margin-top: 0;
-}
-
-.event-info p {
-  font-size: 14px;
-}
-
-.event-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: 1px solid #4f4440;
-  background-color: transparent;
-  color: #4f4440;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Media Queries for Mobile */
-@media screen and (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  nav a {
-    font-size: 18px;
-  }
-
-  .menu-hamburguesa {
-    display: flex;
-  }
-
-  .image-grid {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 0 20px;
-  }
-
-  .image-grid img {
-    max-width: 200px;
-    margin-right: 15px;
-  }
-
-  .servicios .servicios-grid {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-  </style>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.jpg" alt="Logo Sugar Nails" />
-    </div>
-    <div class="menu-hamburguesa" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <nav id="navMenu">
-  <a href="citas.html">Agendar Cita</a>
-  <a href="https://maps.app.goo.gl/…">Ubicación</a>
-</nav>
 
-  </header>
+  <!-- HEADER -->
+  <header class="site-header">
+    <!-- Versión escritorio -->
+    <div class="header-container desktop-header">
+      <!-- Navegación IZQ -->
+      <nav class="nav-left">
+        <ul>
+          <li class="has-dropdown shop-dropdown">
+            <a href="#">Tienda <span>+</span></a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <div class="menu-categories">
+                  <h4>Tienda</h4>
+                  <ul>
+                    <li><a href="#">Todos los productos</a></li>
+                    <li><a href="#">Limpiadores</a></li>
+                    <li><a href="#">Lociones</a></li>
+                    <li><a href="#">Crema hidratante</a></li>
+                  </ul>
+                </div>
+                <div class="menu-promos">
+                  <div class="promo-card">
+                    <div class="icon-heart"><i class="far fa-heart"></i></div>
+                    <div class="badge">18% OFF</div>
+                    <img src="img/hydra-drops.webp" alt="Hydra Drops">
+                    <h5>Hydra Drops</h5>
+                    <div class="price">$1000 <span class="old">$2 mil aveda</span></div>
+                  </div>
+                  <div class="promo-card">
+                    <div class="icon-heart"><i class="far fa-heart"></i></div>
+                    <div class="badge">23% OFF</div>
+                    <img src="img/glow-milk.webp" alt="Glow Milk">
+                    <h5>Glow Milk</h5>
+                    <div class="price">$200 <span class="old">$100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
 
-  <section class="hero">
-  <div class="hero-text">
-    <h1>Bienvenida a tu espacio de belleza</h1>
-    <p>Reserva tu cita y disfruta de una experiencia personalizada para consentir tus uñas.</p>
-  </div>
-  <div class="image-grid">
-    <img src="img1.jpg" class="img1">
-    <img src="img2.jpg" class="img2">
-    <img src="img5.jpg" class="img5">
-    <img src="img3.jpg" class="img3">
-    <img src="img4.jpg" class="img4">
-    <img src="img6.jpg" class="img6">
-  </div>
-</section>
+          <li class="has-dropdown collections-dropdown">
+            <a href="#">Servicios <span>+</span></a>
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <div class="menu-collections">
 
+        <!-- Card 1 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/manicura.webp" alt="Manicura">
+          </div>
+          <div class="collection-info">
+            <em>Manicura</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("navMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-  </script>
+        <!-- Card 2 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/microblading.webp" alt="Microblading">
+          </div>
+          <div class="collection-info">
+            <em>Microblading</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-<section class="servicios">
-  <h2>Nuestros servicios</h2>
-  <div class="servicios-scroll">
-    <div class="servicios-track">
-      <div class="card"><img src="uñas1.jpg"><div class="overlay">Uñas esculturales</div></div>
-      <div class="card"><img src="gel.jpg"><div class="overlay">Gel semipermanente</div></div>
-      <div class="card"><img src="henna.jpg"><div class="overlay">Diseño de cejas con henna</div></div>
-      <div class="card"><img src="cera.jpg"><div class="overlay">Depilación con cera</div></div>
-      <div class="card"><img src="microblading.jpg"><div class="overlay">Microblading</div></div>
-      <div class="card"><img src="manicura.jpg"><div class="overlay">Manicura</div></div>
-      <div class="card"><img src="retiro-pestañas.jpg"><div class="overlay">Retiro de pestañas</div></div>
-      <div class="card"><img src="retiro-uñas.jpg"><div class="overlay">Retiro de uñas acrílicas</div></div>
-      <div class="card"><img src="pestañas.jpg"><div class="overlay">Pestañas</div></div>
-    </div>
-  </div>
-</section>
+        <!-- Card 3 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/depilacion-cera.webp" alt="Depilación con cera">
+          </div>
+          <div class="collection-info">
+            <em>Depilación con cera</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-<style>
-  .servicios-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 20px;
-  }
+        <!-- Card 4 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/unas-esculturales.webp" alt="Uñas esculturales">
+          </div>
+          <div class="collection-info">
+            <em>Uñas esculturales</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  .servicios-track {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
-    width: max-content;
-  }
+        <!-- Card 5 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/gel-semipermanente.webp" alt="Gel semipermanente">
+          </div>
+          <div class="collection-info">
+            <em>Gel semipermanente</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  .servicios .card {
-    position: relative;
-    min-width: 220px;
-    height: 300px;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
+        <!-- Card 6 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/diseno-cejas-henna.webp" alt="Diseño de cejas con henna">
+          </div>
+          <div class="collection-info">
+            <em>Diseño de cejas con henna</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  .servicios .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+        <!-- Card 7 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/pestanas.webp" alt="Pestañas">
+          </div>
+          <div class="collection-info">
+            <em>Pestañas</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  .servicios .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 18px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+        <!-- Card 8 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/retiro-pestanas.webp" alt="Retiro de pestañas">
+          </div>
+          <div class="collection-info">
+            <em>Retiro de pestañas</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
 
-  .servicios .card:hover .overlay {
-    opacity: 1;
-  }
-</style>
-  <section class="ultimos-trabajos">
-    <h2>Nuestros últimos trabajos</h2>
-    <a href="https://www.instagram.com/sugar.nails.mx/" target="_blank">
-      <div class="carousel-wrapper">
-        <div class="carousel-track">
-          <img src="pestañas.jpg">
-          <img src="uñas1.jpg">
-          <img src="microblading.jpg">
-          <img src="manicura.jpg">
-          <img src="img1.jpg">
-          <img src="img2.jpg">
-          <img src="img3.jpg">
-          <img src="img4.jpg">
-          <img src="pestañas.jpg">
-          <img src="uñas1.jpg">
-          <img src="microblading.jpg">
-          <img src="manicura.jpg">
-          <img src="img1.jpg">
-          <img src="img2.jpg">
-          <img src="img3.jpg">
-          <img src="img4.jpg">
+        <!-- Card 9 -->
+        <div class="collection-card">
+          <div class="collection-image">
+            <img src="img/retiro-unas-acrilicas.webp" alt="Retiro de uñas acrílicas">
+          </div>
+          <div class="collection-info">
+            <em>Retiro de uñas acrílicas</em>
+            <i class="fas fa-chevron-right"></i>
+          </div>
         </div>
       </div>
-    </a>
-  </section>
-
-<section class="calendar-section">
-  <div class="calendar-box">
-    <h3 id="monthLabel">Junio 2025</h3>
-    <div class="calendar" id="calendarGrid"></div>
-    <a href="citas.html" class="event-button">AGENDA YA</a>
-  </div>
-</section>
-
-<style>
-  .calendar-section {
-    background-color: var(--rosa-pastel);
-    color: #4f4440;
-    padding: 60px 30px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .calendar-box {
-    background-color: var(--rosa-medio);
-    padding: 20px;
-    border-radius: 10px;
-    width: 360px;
-  }
-
-  .calendar-box h3 {
-    text-align: center;
-    margin-top: 0;
-  }
-
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    gap: 5px;
-  }
-
-  .calendar div {
-    padding: 14px 0;
-    background-color: var(--rosa-profundo);
-    border-radius: 6px;
-    cursor: pointer;
-    color: var(--blanco);
-    position: relative;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .calendar .header {
-    background-color: transparent;
-    font-weight: bold;
-    color: #4f4440;
-    cursor: default;
-    padding: 10px 0;
-  }
-
-  .calendar .past {
-    position: relative;
-    color: white;
-  }
-
-  .calendar .past::before {
-    content: "✕";
-    color: white;
-    font-size: 28px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 6px;
-  }
-
-  .event-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: 1px solid #4f4440;
-    background-color: transparent;
-    color: #4f4440;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-</style>
-
-<script>
-  const calendarGrid = document.getElementById("calendarGrid");
-  const monthLabel = document.getElementById("monthLabel");
-
-  const months = ["Junio 2025", "Julio 2025", "Agosto 2025"];
-  const daysOfWeek = ["Lun", "Mar", "Mier", "Jue", "Vie", "Sab", "Dom"];
-
-  function generateCalendar(monthIndex) {
-    calendarGrid.innerHTML = "";
-    const year = 2025;
-    const month = 5 + monthIndex;
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const today = new Date();
-
-    monthLabel.textContent = months[monthIndex];
-
-    daysOfWeek.forEach(day => {
-      const div = document.createElement("div");
-      div.textContent = day;
-      div.className = "header";
-      calendarGrid.appendChild(div);
-    });
-
-    for (let i = 0; i < (firstDay.getDay() + 6) % 7; i++) {
-      const empty = document.createElement("div");
-      calendarGrid.appendChild(empty);
-    }
-
-    for (let day = 1; day <= lastDay.getDate(); day++) {
-      const div = document.createElement("div");
-      div.textContent = day;
-      const date = new Date(year, month, day);
-      if (date < today) {
-        div.classList.add("past");
-      }
-      div.addEventListener("click", () => {
-        window.location.href = "#agendar";
-      });
-      calendarGrid.appendChild(div);
-    }
-  }
-
-  generateCalendar(0);
-</script>
-
-
-
-
-<footer style="background-color: #f9c7db; color: #4f4440; padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: space-around;">
-  <div style="flex: 1; min-width: 200px; text-align: center;">
-    <img src="logo2.jpg" alt="Logo Sugar Nails" style="width: 100px; border-radius: 50%;" />
-    <p>Síguenos en</p>
-    <div style="display: flex; justify-content: center; gap: 10px;">
-      <a href="https://www.instagram.com/sugar.nails.mx/" target="_blank">
-        <img src="instagram-icon.png" alt="Instagram" style="width: 24px;">
-      </a>
-      <a href="https://www.facebook.com/share/19ByTghxXw/?mibextid=wwXIfr" target="_blank">
-        <img src="facebook-icon.png" alt="Facebook" style="width: 24px;">
-      </a>
-      <a href="https://chat.whatsapp.com/FTixaN2FGrkK1BrJaku68P" target="_blank">
-        <img src="whatsapp-icon.png" alt="WhatsApp" style="width: 24px;">
-      </a>
     </div>
   </div>
+</li>
 
-  <div style="flex: 1; min-width: 200px;">
-    <h4>Datos</h4>
-    <p>Corine Zarate</p>
-    <p>contacto@sugarnails.mx</p>
-    <p>+52 55 6768 5200</p>
+
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Contactanos</a></li>
+          <li><a href="https://maps.app.goo.gl/ZzFXUDrFdyM3YEL6A" target="_blank" rel="noopener">Ubícanos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Logo centro -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo.jpg" alt="SugarNails" class="logo-img">
+        </a>
+      </div>
+
+      <!-- Navegación DER -->
+      <nav class="nav-right">
+        <ul>
+          <li><a href="#"><img src="img/flag-de.webp" alt="DE" class="flag"/></a></li>
+          <li><a href="https://www.instagram.com/sugar.nails.mx" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=100077827862017" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://chat.whatsapp.com/FTixaN2FGrkK1BrJaku68P" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Versión móvil -->
+    <div class="header-container mobile-header">
+      <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo.jpg" alt="SugarNails" class="logo-img">
+        </a>
+      </div>
+      <div class="nav-icons">
+        <a href="#"><img src="img/flag-de.webp" alt="DE" class="flag"/></a>
+        <a href="https://www.instagram.com/sugar.nails.mx" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100077827862017" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://chat.whatsapp.com/FTixaN2FGrkK1BrJaku68P" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="#">Tienda</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contáctanos</a></li>
+        <li><a href="https://maps.app.goo.gl/ZzFXUDrFdyM3YEL6A" target="_blank">Ubícanos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SLIDER -->
+  <section class="hero-slider">
+
+    <div class="slides">
+
+      <!-- Slide 1 -->
+<div class="slide active slide1">
+        <div class="hero-content">
+  <h1>
+    <span class="line1">Tu mirada</span><br>
+    <span class="line2">tu poder</span>
+  </h1>
+  <p>Cuida tus cejas y pestañas con fórmulas suaves y resultados impactantes.</p>
+  <a href="#" class="btn">¡Agenda Ya!</a>
+</div>
+
+<div class="interactive-dots">
+  <span class="i-dot dot-microblading"
+        data-service-name="Microblading"
+        data-service-desc="Técnica semipermanente para diseño de cejas"
+        data-service-img="img/microblading.webp"></span>
+
+  <span class="i-dot dot-pestanas"
+        data-service-name="Pestañas"
+        data-service-desc="Aplicación profesional para dar longitud y volumen"
+        data-service-img="img/pestanas.webp"></span>
+
   </div>
+      </div>
 
-  <div style="flex: 1; min-width: 200px;">
-    <h4>Nos encontramos en</h4>
-    <a href="https://maps.app.goo.gl/5axu5w6KZU1hjQSy6" target="_blank" style="color: #4f4440; text-decoration: underline;">
-      Maple 64, Plan de Iguala, Iztapalapa, 09838 Ciudad de México, CDMX
-    </a>
+      <!-- Slide 2 -->
+ <div class="slide slide2">
+        <div class="hero-content">
+          <h1>Tus manos <span>tu historia</span></h1>
+          <p>Haz de tu rutina un ritual de cuidado y confianza.</p>
+          <a href="#" class="btn">Descubre más</a>
+        </div>
+        <div class="interactive-dots">
+          <span class="i-dot dot-manicura"
+        data-product-name="Manicura"
+        data-product-img="img/manicura.webp"></span>
+
+  <span class="i-dot dot-gel-semipermanente"
+        data-product-name="Gel Semipermanente"
+        data-product-img="img/gel-semipermanente.webp"></span>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+ <div class="slide slide3">
+        <div class="hero-content">
+  <h1>
+    <span class="line3">Belleza </span><br>
+    <span class="line4">En cada detalle.</span>
+  </h1>
+  <p>Depilación con cera y microblading pensados para resaltar tu expresión con suavidad, detalle y cuidado experto.</p>
+  <a href="#" class="btn">¡Agenda Ya!</a>
+</div>
+        <div class="interactive-dots">
+          <span class="i-dot dot-depilacion"
+        data-product-name="Depilación con cera"
+        data-product-img="img/depilacion-cera.webp"></span>
+
+  <span class="i-dot dot-disenio-cejas-henna"
+        data-product-name="Diseño de cejas con henna"
+        data-product-img="img/diseno-cejas-henna.webp"></span>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Flechas -->
+    <button class="nav prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav next"><i class="fas fa-chevron-right"></i></button>
+
+    <!-- Puntos indicadores -->
+    <div class="dots">
+      <span class="dot active" data-slide="0"></span>
+      <span class="dot"        data-slide="1"></span>
+      <span class="dot"        data-slide="2"></span>
+    </div>
+  </section>
+    <!-- popup unico -->
+  <div id="dot-popup" class="dot-popup">
+  <div class="card">
+    <img src="" alt="Imagen servicio/producto">
+    <div class="card-info">
+      <h5>Nombre</h5>
+      <i class="fas fa-chevron-right"></i>
+    </div>
   </div>
+</div>
 
-  <div style="flex: 1; min-width: 200px;">
-    <h4>Información</h4>
-    <ul style="list-style: none; padding: 0;">
-      <li><a href="#" style="color: #4f4440; text-decoration: none;">Acerca de nosotros</a></li>
-      <li><a href="#" style="color: #4f4440; text-decoration: none;">Política de privacidad</a></li>
-      <li><a href="#" style="color: #4f4440; text-decoration: none;">Protección de datos</a></li>
-      <li><a href="#" style="color: #4f4440; text-decoration: none;">Condiciones de uso</a></li>
-      <li><a href="#" style="color: #4f4440; text-decoration: none;">Con mucho amor UwU</a></li>
 
-    </ul>
-  </div>
-</footer>
+  <!-- Scripts -->
+  <script>
+  // 1) Slider (SIN CAMBIOS)
+  const slides = document.querySelectorAll('.slide'),
+        navDots = document.querySelectorAll('.dot');
+  let current = 0;
 
+  function showSlide(n) {
+    slides[current].classList.remove('active');
+    navDots [current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    navDots [current].classList.add('active');
+  }
+
+  document.querySelector('.nav.next')
+    .addEventListener('click', () => showSlide(current + 1));
+  document.querySelector('.nav.prev')
+    .addEventListener('click', () => showSlide(current - 1));
+
+  navDots.forEach(dot =>
+    dot.addEventListener('click', e => showSlide(+e.target.dataset.slide))
+  );
+
+  // 2) Interactive-dots REEMPLAZA tu código viejo por ESTE:
+  const iDots = document.querySelectorAll('.i-dot');
+  const popup = document.getElementById('dot-popup');
+  const cardImg = popup.querySelector('img');
+  const cardTitle = popup.querySelector('h5');
+
+  iDots.forEach(dot => {
+    dot.addEventListener('mouseenter', () => {
+      // nombre e imagen según tipo
+      const name = dot.dataset.serviceName || dot.dataset.productName;
+      const src  = dot.dataset.serviceImg   || dot.dataset.productImg;
+
+      cardTitle.textContent = name;
+      cardImg.src           = src;
+      cardImg.alt           = name;
+
+      // posicionar y mostrar
+      const r = dot.getBoundingClientRect();
+      popup.style.top     = (r.top + r.height/2) + 'px';
+      popup.style.left    = (r.left + r.width/2)  + 'px';
+      popup.style.display = 'block';
+    });
+    dot.addEventListener('mouseleave', () => {
+      popup.style.display = 'none';
+    });
+  });
+</script>
+<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu   = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      const isVisible = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = isVisible ? 'none' : 'block';
+    });
+  </script>
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/sugarnailszcsc/30min?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
 </body>
 </html>
-
