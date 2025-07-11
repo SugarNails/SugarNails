@@ -167,7 +167,7 @@
 
 
           <li><a href="#">Nosotros</a></li>
-          <li><a href="#">Contactanos</a></li>
+<li><a href="#contacto">Contáctanos</a></li>
           <li><a href="https://maps.app.goo.gl/ZzFXUDrFdyM3YEL6A" target="_blank" rel="noopener">Ubícanos</a></li>
         </ul>
       </nav>
@@ -209,14 +209,15 @@
     </div>
 
     <nav class="mobile-menu" id="mobile-menu">
-      <ul>
-        <li><a href="#">Tienda</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contáctanos</a></li>
-        <li><a href="https://maps.app.goo.gl/ZzFXUDrFdyM3YEL6A" target="_blank">Ubícanos</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="#">Tienda</a></li>
+    <li><a href="#">Servicios</a></li>
+    <li><a href="#">Nosotros</a></li>
+    <li><a href="#contacto">Contáctanos</a></li>
+    <li><a href="https://maps.app.goo.gl/ZzFXUDrFdyM3YEL6A" target="_blank">Ubícanos</a></li>
+  </ul>
+</nav>
+
   </header>
 
   <!-- HERO SLIDER -->
@@ -226,7 +227,7 @@
 
       <!-- Slide 1 -->
 <div class="slide active slide1">
-        <div class="hero-content">
+<div class="hero-content fade-in">
   <h1>
     <span class="line1">Tu mirada</span><br>
     <span class="line2">tu poder</span>
@@ -251,7 +252,7 @@
 
       <!-- Slide 2 -->
  <div class="slide slide2">
-        <div class="hero-content">
+<div class="hero-content fade-in">
           <h1>Tus manos <span>tu historia</span></h1>
           <p>Haz de tu rutina un ritual de cuidado y confianza.</p>
           <a href="#" class="btn">Descubre más</a>
@@ -269,7 +270,7 @@
 
       <!-- Slide 3 -->
  <div class="slide slide3">
-        <div class="hero-content">
+<div class="hero-content fade-in">
   <h1>
     <span class="line3">Belleza </span><br>
     <span class="line4">En cada detalle.</span>
@@ -312,72 +313,91 @@
     </div>
   </div>
 </div>
+<section id="contacto" class="contact-section fade-in">
+  <div class="container">
+    <h2 class="contact-title">Contactanos</h2>
+    <p class="contact-subtitle">
+Ya sea que tenga alguna pregunta sobre su cita, necesites consejos sobre el cuidado de la piel o simplemente quiera saludar.    </p>
+        <form id="contact-form" class="contact-form">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Correo</label>
+          <input id="email" type="email" placeholder="Joss@sugarnails.com" required />
+        </div>
+      </div>
+      <div class="form-group full">
+        <label for="message">Mensaje</label>
+        <textarea id="message" placeholder="¿En que podemos ayudarte?" required></textarea>
+      </div>
+      <button type="submit" class="contact-btn">Enviar</button>
+    </form>
+  </div>
+</section>
 
 
-  <!-- Scripts -->
-  <script>
-  // 1) Slider (SIN CAMBIOS)
-  const slides = document.querySelectorAll('.slide'),
-        navDots = document.querySelectorAll('.dot');
-  let current = 0;
+<div class="agenda-info" id="agenda-info">
+  <button class="close-agenda" onclick="cerrarAgenda()">×</button>
+  <p><strong>Para agendar debes realizar un depósito de $100</strong> a este número de cuenta:</p>
+  
+  <div class="cuenta-box">
+    <input type="text" id="cuenta-numero" value="012180015881420100" readonly>
+    <button onclick="copiarCuenta()">Copiar</button>
+  </div>
 
-  function showSlide(n) {
-    slides[current].classList.remove('active');
-    navDots [current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    navDots [current].classList.add('active');
-  }
+  <p class="banco">BBVA, Samantha Zarate</p>
+  <p class="nota">Ten en cuenta que tendrás 15 minutos de tolerancia para llegar a la cita,<br>en caso de no asistir se pierde el depósito.</p>
+</div>
 
-  document.querySelector('.nav.next')
-    .addEventListener('click', () => showSlide(current + 1));
-  document.querySelector('.nav.prev')
-    .addEventListener('click', () => showSlide(current - 1));
 
-  navDots.forEach(dot =>
-    dot.addEventListener('click', e => showSlide(+e.target.dataset.slide))
-  );
 
-  // 2) Interactive-dots REEMPLAZA tu código viejo por ESTE:
-  const iDots = document.querySelectorAll('.i-dot');
-  const popup = document.getElementById('dot-popup');
-  const cardImg = popup.querySelector('img');
-  const cardTitle = popup.querySelector('h5');
 
-  iDots.forEach(dot => {
-    dot.addEventListener('mouseenter', () => {
-      // nombre e imagen según tipo
-      const name = dot.dataset.serviceName || dot.dataset.productName;
-      const src  = dot.dataset.serviceImg   || dot.dataset.productImg;
-
-      cardTitle.textContent = name;
-      cardImg.src           = src;
-      cardImg.alt           = name;
-
-      // posicionar y mostrar
-      const r = dot.getBoundingClientRect();
-      popup.style.top     = (r.top + r.height/2) + 'px';
-      popup.style.left    = (r.left + r.width/2)  + 'px';
-      popup.style.display = 'block';
-    });
-    dot.addEventListener('mouseleave', () => {
-      popup.style.display = 'none';
-    });
-  });
-</script>
-<script>
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileMenu   = document.getElementById('mobile-menu');
-
-    hamburgerBtn.addEventListener('click', () => {
-      const isVisible = mobileMenu.style.display === 'block';
-      mobileMenu.style.display = isVisible ? 'none' : 'block';
-    });
-  </script>
-<!-- Calendly badge widget begin -->
+  <!-- Calendly badge widget -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/sugarnailszcsc/30min?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
-<!-- Calendly badge widget end -->
+<script type="text/javascript">
+  window.onload = function() {
+    Calendly.initBadgeWidget({
+      url: 'https://calendly.com/sugarnailszcsc/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+      text: '¡Agenda aqui!',
+      color: '#0069ff',
+      textColor: '#ffffff',
+      branding: true
+    });
+  };
+</script>
+<script>
+  function cerrarAgenda() {
+    const agenda = document.getElementById('agenda-info');
+    if (agenda) {
+      agenda.style.display = 'none';
+    }
+  }
+
+  function copiarCuenta() {
+    const cuenta = document.getElementById("cuenta-numero");
+    cuenta.select();
+    cuenta.setSelectionRange(0, 99999); // Para móviles
+    document.execCommand("copy");
+    alert("Número de cuenta copiado: " + cuenta.value);
+  }
+</script>
+
+<script>
+  function copiarCuenta() {
+    const cuenta = document.getElementById("cuenta-numero");
+    cuenta.select();
+    cuenta.setSelectionRange(0, 99999); // mobile
+    document.execCommand("copy");
+    alert("Número de cuenta copiado: " + cuenta.value);
+  }
+</script>
+
+<script src="main.js"></script>
+
 </body>
 </html>

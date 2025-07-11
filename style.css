@@ -732,6 +732,236 @@ body {
 .dot-gel-semipermanente   { top: 55%; left: 34%; }
 .dot-depilacion           { top: 35%; left: 45%; }
 .dot-disenio-cejas-henna  { top: 45%; left: 56%; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(60px);
+  filter: blur(8px);
+  transition: all 1s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+
+.contact-section {
+  display: none;
+  padding: 140px 20px 80px; /* mayor espacio superior para no ser tapado */
+  background: #f7f6f1;
+  min-height: 100vh;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.contact-section.visible {
+  display: block;
+}
+
+.contact-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+.contact-subtitle {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+.contact-form {
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+label {
+  font-style: italic;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: #f4f3f0;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-btn {
+  background: #3c4531;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #2f3626;
+}
+
+
+.agenda-info {
+  position: fixed;
+  bottom: 60px;       /* justo encima del botón Calendly */
+  right: 13px;        /* misma alineación */
+  width: 180px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  z-index: 3000;
+  color: #111;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  /* ⛔️ NO pongas position: relative aquí */
+}
+
+.agenda-info p {
+  margin: 2px 0;
+}
+
+.agenda-info .cuenta-box {
+  gap: 4px;
+  margin: 4px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cuenta-numero {
+  padding: 4px;
+  font-size: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.agenda-info button {
+  padding: 4px;
+  font-size: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #f8cbdc;
+  color: #222;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.agenda-info .banco {
+  font-size: 10px;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+.agenda-info .nota {
+  font-size: 9px;
+  margin-top: 4px;
+  line-height: 1.2;
+  font-style: italic;
+  color: #c681a0;
+}
+
+.close-agenda {
+  position: absolute; /* este sí es relativo a .agenda-info */
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.close-agenda:hover {
+  opacity: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 @media (max-width: 768px) {
   /* — Ocultar header de escritorio, mostrar header móvil — */
   .desktop-header {
@@ -900,4 +1130,91 @@ body {
   .dot-gel-semipermanente  { top: 66%; left: 25%; }
   .dot-depilacion          { top: 40%; left: 35%; }
   .dot-disenio-cejas-henna { top: 48%; left: 60%; }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 120px 16px 60px;
+  }
+
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-subtitle {
+    font-size: 14px;
+    padding: 0 10px;
+    margin-bottom: 32px;
+  }
+
+  .contact-form {
+    padding: 24px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-group {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .form-group.full {
+    margin-top: 0;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .contact-btn {
+    font-size: 13px;
+    padding: 10px 20px;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+}
+/* ===== Estilo limpio para menú móvil ===== */
+.mobile-menu {
+  background: #fff;
+  border-radius: 16px;
+  margin: 16px 12px 0;
+  padding: 24px 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  font-family: 'Inter', sans-serif;
+  animation: fadeInUp 0.4s ease;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-menu li {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.mobile-menu li:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s;
+  display: block;
+}
+
+.mobile-menu a:hover {
+  color: #000;
 }
