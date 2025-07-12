@@ -330,7 +330,7 @@ body {
 .collection-card .collection-info em {
   font-style: italic;
   font-size: 14px;
-  color: #333;
+  color: #333; 
 }
 .collection-card .collection-info i {
   font-size: 16px;
@@ -343,7 +343,18 @@ body {
 .collection-card:hover .collection-info i {
   transform: translateX(4px);
 }
+.collection-card {
+  position: relative;
+  overflow: hidden;
+}
 
+.menu-collections a::after {
+  display: none !important;
+}
+
+.collection-card:hover::after {
+  width: 100%;
+}
 /* NAV DERECHA */
 .nav-right ul {
   list-style: none;
@@ -351,7 +362,23 @@ body {
   gap: 24px;
   align-items: center;
 }
+.collection-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #333;
+  transition: width 0.3s ease;
+}
 
+.collection-card:hover::after {
+  width: 100%;
+}
+.menu-collections a::after {
+  display: none !important;
+}
 .nav-right a {
   text-decoration: none;
   font-size: 16px;
